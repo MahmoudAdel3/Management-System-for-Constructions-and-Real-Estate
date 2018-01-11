@@ -1,0 +1,58 @@
+﻿@model IEnumerable<IA.Models.project>
+
+@{
+    ViewBag.Title = "currentprojects";
+    Layout = "~/Views/_Customer.cshtml";
+}
+
+
+
+
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+            <div>
+                Project title
+            </div>
+           
+        </th>
+        <th>
+            <div>
+                Project Description 
+                       </div>
+
+        </th>
+                <th>
+            <div>
+                Creation Date
+            </div>
+
+        </th>
+       
+        <th>Control</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+               <td>
+            @Html.DisplayFor(modelItem => item.creation_date)
+        </td>
+       
+        <td>
+            <a>
+                @Html.ActionLink("Leave", "leaveproject", new { id = item.Id },
+new { @class = " btn btn-danger confirm" })
+            </a> 
+         
+           
+        </td>
+    </tr>
+}
+
+</table>

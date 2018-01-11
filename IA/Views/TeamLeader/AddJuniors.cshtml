@@ -1,0 +1,84 @@
+﻿@model IEnumerable<IA.Models.user>
+
+@{
+    ViewBag.Title = "AddJuniors";
+    Layout = "~/Views/_Admin.cshtml";
+
+
+    IA.Models.Database2Entities3 db = new IA.Models.Database2Entities3();
+    var request = db.requests.ToList();
+
+
+}
+
+
+<table table class="table main-table table-bordered text-center">
+    @if (Model.Count() != 0)
+    {
+        <tr>
+            <th>
+                <div>
+                    Name
+                </div>
+
+            </th>
+
+            <th>
+                <div>
+                    Email
+                </div>
+
+            </th>
+
+            <th>
+                <div>
+                    Phone Nummber
+                </div>
+
+            </th>
+
+            <th>
+                <div>
+                    Image
+                </div>
+
+            </th>
+
+            <th></th>
+        </tr>
+
+    }
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fname)    @Html.DisplayFor(modelItem => item.lname)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.phone_number)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.image)
+            </td>
+            @foreach (var x in request)
+            {
+                if (x.sender_id == 2)
+                { }
+            }
+            <td>
+                @Html.ActionLink("Send Request", "SendRequest", new { id = item.id },
+new { @class = " btn btn-success confirm" })
+            </td>
+
+        </tr>
+    }
+
+</table>

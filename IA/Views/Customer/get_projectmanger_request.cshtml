@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IA.Models.request>
+
+@{
+    ViewBag.Title = "get_projectmanger_request";
+    Layout = "~/Views/_Customer.cshtml";
+}
+
+
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+            <div>
+                content 
+            </div>
+            
+        </th>
+        <th>
+            <div>
+                project title
+            </div>        </th>
+        
+        <th>
+            <div>
+                PM Name
+            </div>
+        </th>
+        
+        <th>Control</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.title)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.user1.fname)    @Html.DisplayFor(modelItem => item.user1.lname)
+        </td>
+        
+        <td> 
+            <a>@Html.ActionLink("Accept", "Assign_pm", new { id = item.Id }, new { @class = " btn btn-success " })</a>
+           
+        </td>
+    </tr>
+}
+
+</table>

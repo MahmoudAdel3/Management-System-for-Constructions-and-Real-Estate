@@ -1,0 +1,61 @@
+﻿@model IEnumerable<IA.Models.project>
+
+@{
+    ViewBag.Title = "manage_home_page";
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+<script type="text/javascript">
+    function getConfirmation() {
+        var confirmation = confirm("Do you want to continue ?");
+        if (confirmation == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+            <div>
+                Title
+            </div>
+        </th>
+        
+        <th>
+            <div>
+                Creation Date
+            </div>
+        </th>
+        <th>
+            <div>
+                Customer Name
+            </div>
+        </th>
+        <th>Control</th>
+    </tr>
+    
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.creation_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.fname) @Html.DisplayFor(modelItem => item.user.lname)
+        </td>
+        <td>
+            
+            <a>@Html.ActionLink("Details", "Projectdetails", new { id = item.Id }, new { @class = "btn btn-success " })</a>
+            <a>@Html.ActionLink("Delete", "projecthomedelete", new { id = item.Id }, new { @class = " btn btn-danger confirm", onclick="return getConfirmation();"})</a>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<IA.Models.project>
+
+@{
+    ViewBag.Title = "GetProjects";
+    Layout = "~/Views/_Customer.cshtml";
+}
+
+<br/>
+
+<p>
+    @Html.ActionLink("Create New", "CreateProject", null,
+new { @class = "btn btn-primary" })
+</p>
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duration)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.creation_date)
+        </th>
+        
+        <th>Control</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duration)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.creation_date)
+        </td>
+        
+        <td>
+            <a>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = " btn btn-success " })</a>
+            <a>@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-success " })</a>
+            <a>@Html.ActionLink("Remove", "Remove", new { id = item.Id }, new { @class = " btn btn-danger confirm" })</a>
+        </td>
+    </tr>
+}
+
+</table>

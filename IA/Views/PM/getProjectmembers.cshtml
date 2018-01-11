@@ -1,0 +1,60 @@
+﻿@model IEnumerable<IA.Models.user>
+
+@{
+    ViewBag.Title = "getProjectmembers";
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+<h2>Project members</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            <div>
+                Name
+            </div>
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+         <th>
+           <div>
+               Phone
+           </div>
+        </th>
+        <th>
+            <div>
+                Job title
+            </div>
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fname)   @Html.DisplayFor(modelItem => item.lname)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.phone_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jop_description)
+        </td>
+        
+        <td>
+           
+            @Html.ActionLink("Delete", "DeleteMember", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

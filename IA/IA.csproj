@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{15EED541-B100-4DF9-A587-3B54A4FC7DBE}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IA</RootNamespace>
+    <AssemblyName>IA</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Database2.mdf" />
+    <Content Include="App_Data\Database2_log.ldf">
+      <DependentUpon>Database2.mdf</DependentUpon>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icofont.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="image\1.jpg" />
+    <Content Include="image\1.png" />
+    <Content Include="image\10.jpg" />
+    <Content Include="image\11.jpg" />
+    <Content Include="image\12.jpg" />
+    <Content Include="image\13.jpg" />
+    <Content Include="image\14.jpg" />
+    <Content Include="image\15.jpg" />
+    <Content Include="image\16.jpg" />
+    <Content Include="image\17.jpg" />
+    <Content Include="image\1_001.jpg" />
+    <Content Include="image\1_001.png" />
+    <Content Include="image\1_002.jpg" />
+    <Content Include="image\1_002.png" />
+    <Content Include="image\1_003.jpg" />
+    <Content Include="image\1_003.png" />
+    <Content Include="image\1_004.jpg" />
+    <Content Include="image\1_004.png" />
+    <Content Include="image\1_005.jpg" />
+    <Content Include="image\1_005.png" />
+    <Content Include="image\1_006.png" />
+    <Content Include="image\1_007.png" />
+    <Content Include="image\1_008.png" />
+    <Content Include="image\1_009.png" />
+    <Content Include="image\2.jpg" />
+    <Content Include="image\2.png" />
+    <Content Include="image\2_001.jpg" />
+    <Content Include="image\2_001.png" />
+    <Content Include="image\2_002.jpg" />
+    <Content Include="image\2_002.png" />
+    <Content Include="image\2_003.jpg" />
+    <Content Include="image\2_003.png" />
+    <Content Include="image\2_004.jpg" />
+    <Content Include="image\2_004.png" />
+    <Content Include="image\2_005.png" />
+    <Content Include="image\2_006.png" />
+    <Content Include="image\2_007.png" />
+    <Content Include="image\2_008.png" />
+    <Content Include="image\2_009.png" />
+    <Content Include="image\3.jpg" />
+    <Content Include="image\3.png" />
+    <Content Include="image\3_001.jpg" />
+    <Content Include="image\3_001.png" />
+    <Content Include="image\3_002.jpg" />
+    <Content Include="image\3_002.png" />
+    <Content Include="image\3_003.jpg" />
+    <Content Include="image\3_003.png" />
+    <Content Include="image\3_004.png" />
+    <Content Include="image\4.jpg" />
+    <Content Include="image\4_001.jpg" />
+    <Content Include="image\4_002.jpg" />
+    <Content Include="image\4_003.jpg" />
+    <Content Include="image\5.jpg" />
+    <Content Include="image\5.png" />
+    <Content Include="image\5_001.jpg" />
+    <Content Include="image\5_002.jpg" />
+    <Content Include="image\6.jpg" />
+    <Content Include="image\6_001.jpg" />
+    <Content Include="image\6_002.jpg" />
+    <Content Include="image\7.jpg" />
+    <Content Include="image\7_001.jpg" />
+    <Content Include="image\7_002.jpg" />
+    <Content Include="image\8.jpg" />
+    <Content Include="image\8_001.jpg" />
+    <Content Include="image\9.jpg" />
+    <Content Include="image\anonymous %281%29.png" />
+    <Content Include="image\bathroom.PNG" />
+    <Content Include="image\bd.png" />
+    <Content Include="image\bedroom.PNG" />
+    <Content Include="image\car-parking.PNG" />
+    <Content Include="image\cont.jpg" />
+    <Content Include="image\contact.png" />
+    <Content Include="image\feet.PNG" />
+    <Content Include="image\kitchen.PNG" />
+    <Content Include="image\logo-2.png" />
+    <Content Include="image\logo.png" />
+    <Content Include="image\logo_001.png" />
+    <Content Include="image\property.jpg" />
+    <Content Include="image\school.PNG" />
+    <Content Include="image\slide1.jpg" />
+    <Content Include="image\slide2.jpg" />
+    <Content Include="image\slide3.jpg" />
+    <Content Include="image\sponsors.jpg" />
+    <Content Include="Scripts\animate.css" />
+    <Content Include="Scripts\bootstrap.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.css" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\canvasjs.min.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\font-awesome.min.css" />
+    <Content Include="Database1.xsc">
+      <DependentUpon>Database1.xsd</DependentUpon>
+    </Content>
+    <None Include="Database1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Database1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Database1.xss">
+      <DependentUpon>Database1.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mixitup.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\Site.css" />
+    <Content Include="Scripts\wow.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_Admin.cshtml" />
+    <Content Include="Views\_Customer.cshtml" />
+    <Content Include="Views\_Home.cshtml" />
+    <Content Include="Views\Admin\manageusers.cshtml" />
+    <Content Include="Views\Admin\details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JuniorEngineerController.cs" />
+    <Compile Include="Controllers\PMController.cs" />
+    <Compile Include="Controllers\TeamLeaderController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Database1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\feedback.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\general.cs" />
+    <Compile Include="Models\mangaed_projects.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\project.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\project_comments.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\project_members.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\report.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\request.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\state.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Table.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_qualification.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\user_type.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\icofont.eot" />
+    <Content Include="fonts\icofont.ttf" />
+    <Content Include="fonts\icofont.woff" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Admin\Adduser.cshtml" />
+    <Content Include="Views\Admin\manage_pending_projects.cshtml" />
+    <Content Include="Views\Admin\manage_home_page.cshtml" />
+    <Content Include="Views\JuniorEngineer\teamrequest.cshtml" />
+    <Content Include="Views\Home\Partial1.cshtml" />
+    <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Home\register.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\GetProjects.cshtml" />
+    <Content Include="Views\JuniorEngineer\currentprojects.cshtml" />
+    <Content Include="Views\Customer\get_projectmanger_request.cshtml" />
+    <Content Include="Views\Home\projects.cshtml" />
+    <Content Include="Views\TeamLeader\AddJuniors.cshtml" />
+    <Content Include="Views\TeamLeader\currentProjects.cshtml" />
+    <Content Include="Views\TeamLeader\Details.cshtml" />
+    <Content Include="Views\TeamLeader\GiveFeedback.cshtml" />
+    <Content Include="Views\TeamLeader\Index.cshtml" />
+    <Content Include="Views\TeamLeader\SendRequest.cshtml" />
+    <Content Include="Views\PM\Details.cshtml" />
+    <Content Include="Views\PM\getCutomerProjects.cshtml" />
+    <Content Include="Views\PM\getDeliveredProjects.cshtml" />
+    <Content Include="Views\PM\getJuniorEngineers.cshtml" />
+    <Content Include="Views\PM\getPmProjects.cshtml" />
+    <Content Include="Views\PM\getProjectmembers.cshtml" />
+    <Content Include="Views\PM\getTeamLeaders.cshtml" />
+    <Content Include="Views\PM\Manage.cshtml" />
+    <Content Include="Views\PM\SendRequestToJuniorEngineer.cshtml" />
+    <Content Include="Views\PM\SendRequestToTeamLeader.cshtml" />
+    <Content Include="Views\Admin\Statistical.cshtml" />
+    <Content Include="Views\JuniorEngineer\Statistical.cshtml" />
+    <Content Include="Views\TeamLeader\Statistical.cshtml" />
+    <Content Include="Views\PM\Statistical.cshtml" />
+    <Content Include="Views\User\Index2.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Projectdetails.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>18989</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:18989/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

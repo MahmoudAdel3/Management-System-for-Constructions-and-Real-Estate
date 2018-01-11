@@ -1,0 +1,60 @@
+﻿@model IEnumerable<IA.Models.user>
+
+@{
+   
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+<h2>Manage Users</h2>
+
+<p>
+    @Html.ActionLink("Add New User", "Adduser", null,
+new { @class = "btn btn-primary" })
+</p>
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+           <div>
+               Name
+           </div>
+        </th>
+        
+        <th>
+            <div>
+                Email
+            </div>
+        </th>
+        
+                <th>
+                    <div>
+                        Job
+                    </div>
+        </th>
+        
+        <th>Control</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fname)   @Html.DisplayFor(modelItem => item.lname)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.jop_description)
+        </td>
+        
+        <td>
+            <a>
+                @Html.ActionLink("Delete", "Deleteuser", new { id = item.id },
+new { @class = " btn btn-danger confirm" })
+            </a> 
+        </td>
+    </tr>
+}
+
+</table>

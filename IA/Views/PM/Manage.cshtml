@@ -1,0 +1,58 @@
+﻿@model IA.Models.mangaed_projects
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+<h2>Manage </h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true)
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.start_date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.start_date)
+                @Html.ValidationMessageFor(model => model.start_date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deliver_date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deliver_date)
+                @Html.ValidationMessageFor(model => model.deliver_date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cost, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cost)
+                @Html.ValidationMessageFor(model => model.cost)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

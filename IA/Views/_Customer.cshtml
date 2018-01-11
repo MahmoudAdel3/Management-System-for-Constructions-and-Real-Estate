@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Real Estate</title>
+    <link href="~/Scripts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Scripts/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-upper">
+            <div class="container">
+                <ul class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                    <li>
+                        <a href="#"><i aria-hidden="true" class="fa fa-globe"></i> Email :info@realState.com</a>
+                    </li>
+                </ul>
+                <ul class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
+
+@if (HttpContext.Current.Session["ID"] == null)
+{ 
+                    <li>
+                        <a href="#"><i aria-hidden="true" class="fa fa-registered"></i> Register</a>
+                    </li>
+                    <li>
+                        <a href="#"><i aria-hidden="true" class="fa fa-sign-in"></i> Login</a>
+                    </li>
+}
+                </ul>
+            </div>
+        </div>
+        <div class="header-lower nav-justified">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img alt="image" src="~/image/logo.png"></a>
+                </div>
+                <div class="hire">
+                    <div class="box address">
+                        <i aria-hidden="true" class="fa fa-home"></i>
+                        <ul>
+                            <li><strong>address :</strong></li>
+                            <li>100A Birmingham, United States.</li>
+                        </ul>
+                    </div>
+                    <div class="box phone">
+                        <i aria-hidden="true" class="fa fa-phone"></i>
+                        <ul>
+                            <li><strong>phone :</strong></li>
+                            <li>01145602349</li>
+                        </ul>
+                    </div>
+                    <div class="box btn">
+                        <a href="#">hire an agent</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <form action="#" class="search-form-icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input type="text" placeholder="Search Keyword">
+
+                    </form>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        @if (HttpContext.Current.Session["ID"] != null)
+                        {
+                            if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 4)
+                            {
+                                <li>
+                                    @Html.ActionLink("Projects", "GetProjects", "Customer")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Assign PM", "get_projectmanger_request", "Customer")
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Add new project", "CreateProject", "Customer")
+                                </li>
+                            }
+                            else if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 3)
+                            {
+                                <li>
+                                    @Html.ActionLink("Requests ", "teamrequest", "JuniorEngineer")
+
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Current projects", "currentprojects", "JuniorEngineer")
+
+                                </li>
+                            }
+
+                            <li>
+                                @Html.ActionLink("Logout", "logout", "User")
+                            </li>
+
+                        }  
+                        
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <nav class="navbar navbar-default" id="scroll_nav">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html" class="navbar_brand">
+                        <img src="~/image/logo.png" alt="image">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        @if (HttpContext.Current.Session["ID"] != null)
+{
+    if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 4)
+    {
+        <li>
+            @Html.ActionLink("Projects", "GetProjects", "Customer")
+        </li>
+    }
+    else if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 3)
+                            {
+                                <li>
+                                    @Html.ActionLink("Requests ", "teamrequest", "JuniorEngineer")
+
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Current projects", "currentprojects", "JuniorEngineer")
+
+                                </li>
+                            }
+
+
+    <li>
+        @Html.ActionLink("Logout", "logout", "User")
+    </li>
+
+}
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <nav class="navbar navbar-default" id="scroll_nav">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar_brand" href="index.html"><img alt="image" src="~/image/logo.png"></a>
+                </div><!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        @if (HttpContext.Current.Session["ID"] != null)
+{
+    if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 4)
+    {
+        <li>
+            @Html.ActionLink("Projects", "GetProjects", "Customer")
+        </li>
+    }
+    else if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 3)
+                            {
+                                <li>
+                                    @Html.ActionLink("Requests ", "teamrequest", "JuniorEngineer")
+
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Current projects", "currentprojects", "JuniorEngineer")
+
+                                </li>
+                            }
+
+
+    <li>
+        @Html.ActionLink("Logout", "logout", "User")
+    </li>
+
+}
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </header>
+    <section class="container-fluid">
+        <div class="row">
+
+
+            <section class="left-fun col-md-6 left">
+                @RenderBody()
+
+            </section>
+            <section class="left-fun col-md-6 ">
+                <div class="details">
+                    <div class="container">
+                        <h2>Personal Information</h2>
+                        <div class="image col-md-3">
+                            <img src="~/image/anonymous%20(1).png" alt="">
+                        </div>
+                        <div>
+                            <ul>
+                                <li><span>Name : @HttpContext.Current.Session["Name"] </span></li>
+                                <li><span>Mobile : @HttpContext.Current.Session["phone"]</span></li>
+                                <li><span>Email : @HttpContext.Current.Session["email"]</span> </li>
+                                <li><span>Job Description: @HttpContext.Current.Session["jobdesc"]</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </section>
+    <!-- about -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <div class="about-us">
+                        <h2>About Us</h2>
+                        <div class="txt">
+                            <span>They really are a scream the addams am making your way in the world they really are a scream the miss ad dams they are a really are a scream the addams cream the miss ad dams.</span>
+                            <h2 class="phone">01145602349</h2><img src="~/image/logo.png">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="recent">
+                        <h2>Recent Projects</h2>
+                        <ul class="list-unstyled list">
+                            <li>
+                                <img src="~/image/1_009.png" class="img-circle" style="height:80px;width:80px" /><span>New Village</span>
+                            </li>
+
+                            <li>
+                                <img src="~/image/2_009.png" class="img-circle" style="height:80px;width:80px" /><span>Home Town</span>
+                            </li>
+                            <li>
+                                <img src="~/image/3_004.png" class="img-circle" style="height:80px;width:80px" /><span>New Market</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="site-map">
+                        <h2>Contact us</h2>
+                        <ul class="list-unstyled list">
+                            <li>
+                                <i aria-hidden="true" class="fa fa-facebook"></i> <a href="https://www.facebook.com/">Facebook</a>
+                            </li>
+                            <li>
+                                <i aria-hidden="true" class="fa fa-twitter"></i> <a href="https://twitter.com">Twitter</a>
+                            </li>
+                            <li>
+                                <i aria-hidden="true" class="fa fa-google-plus"></i> <a href="https://plus.google.com/">Google+</a>
+                            </li>
+                            <li>
+                                <i aria-hidden="true" class="fa fa-linkedin"></i> <a href="https://www.linkedin.com">LinkedIn</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <span>&copy; Copyrights @DateTime.Now.Year  Projects Management System for Constructions and Real Estate. All Rights Reserved</span>
+    </footer>
+
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/wow.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    <script src="~/Scripts/mixitup.min.js"></script>
+
+    <script>
+        new WOW().init();
+    </script>
+    <script src="~/Scripts/script.js"></script>
+
+</body>
+</html>

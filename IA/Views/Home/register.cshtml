@@ -1,0 +1,85 @@
+﻿
+@model IA.Models.user
+
+@using (Html.BeginForm("register", "User"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="col-md-12">First Name</label>
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.fname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.fname)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">Last Name</label>
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.lname, new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.lname)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-12">Email</label>
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.email, new { @class = "form-control", Type = "email" })
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-12">Password</label>
+            <div class="col-md-12">
+                @Html.PasswordFor(model => model.password, new { @class = "form-control", Type = "password" })
+                @Html.ValidationMessageFor(model => model.password)
+            </div>
+        </div>
+
+        <div class="form-group text-left">
+            <label class="col-md-12">Mobile</label>
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.phone_number, new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.phone_number)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-12">Job Description</label>
+            <div class="col-md-12">
+                @Html.TextAreaFor(model => model.jop_description, new { @class = "form-control " })
+                @Html.ValidationMessageFor(model => model.jop_description)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-12">Type Id</label>
+            <div class="col-md-12">
+                @Html.TextBoxFor(model => model.type_id, new { @class = "text-left form-control", Type = "id" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="col-md-12">Photo</label>
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.image)
+                @Html.ValidationMessageFor(model => model.image)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Create" class="btn btn-default submit" />
+            </div>
+        </div>
+    </div>
+}
+@{Html.EndForm();}

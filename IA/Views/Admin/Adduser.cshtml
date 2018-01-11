@@ -1,0 +1,96 @@
+﻿@model IA.Models.user
+
+@{
+    
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+<h2>Add user</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="col-md-2">First Name</label>
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.fname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.fname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Last Name</label>
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.lname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.lname)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="col-md-2">Email</label>
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.email, new { @class = "form-control", Type = "email" })
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Password</label>
+            <div class="col-md-5">
+                @Html.PasswordFor(model => model.password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Mobile</label>
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.phone_number, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.phone_number)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Job Description</label>
+            <div class="col-md-5">
+                @Html.TextAreaFor(model => model.jop_description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.jop_description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Photo</label>
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.image)
+                @Html.ValidationMessageFor(model => model.image)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Type ID</label>
+            <div class="col-md-5">
+                @Html.TextBoxFor(model => model.type_id, new { @class = "form-control",Type="id"})
+                @Html.ValidationMessageFor(model => model.type_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="text-center col-md-7">
+                <input type="submit" value="Create" class="btn submit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "manageusers", null,
+new { @class = "btn btn-primary" })
+</div>

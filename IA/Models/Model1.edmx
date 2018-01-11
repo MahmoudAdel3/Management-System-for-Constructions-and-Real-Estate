@@ -1,0 +1,1113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Database2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tl_id" Type="int" Nullable="false" />
+          <Property Name="pm_id" Type="int" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="content" Type="text" Nullable="false" />
+          <Property Name="member_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mangaed_projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="pm_id" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="deliver_date" Type="date" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="posting_state_id" Type="int" Nullable="false" />
+          <Property Name="assigend_state_id" Type="int" Nullable="false" />
+          <Property Name="creation_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project_comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="pm_id" Type="int" Nullable="false" />
+          <Property Name="content" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="project_members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="member_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pm_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="content" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sender_id" Type="int" Nullable="false" />
+          <Property Name="reciever_id" Type="int" Nullable="false" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="content" Type="text" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="qualification" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone_number" Type="varchar" MaxLength="20" />
+          <Property Name="jop_description" Type="text" />
+          <Property Name="image" Type="image" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_qualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="qualification" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_feedback_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="tl_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_ToTable_2">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_ToTable_3">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mangaed_projects_ToTable">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="mangaed_projects" Type="Self.mangaed_projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mangaed_projects">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mangaed_projects_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="mangaed_projects" Type="Self.mangaed_projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mangaed_projects">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mangaed_projects_ToTable_2">
+          <End Role="state" Type="Self.state" Multiplicity="1" />
+          <End Role="mangaed_projects" Type="Self.mangaed_projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mangaed_projects">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_comments_ToTable">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="project_comments" Type="Self.project_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_comments">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_comments_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="project_comments" Type="Self.project_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_comments">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_members_ToTable">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="project_members" Type="Self.project_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_members">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_members_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="project_members" Type="Self.project_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_members">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="report" Type="Self.report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="report" Type="Self.report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="reciever_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable_2">
+          <End Role="state" Type="Self.state" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable_3">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_qualification" Type="Self.user_qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_qualification">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_ToTable">
+          <End Role="user_type" Type="Self.user_type" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database2ModelStoreContainer">
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mangaed_projects" EntityType="Self.mangaed_projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project" EntityType="Self.project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project_comments" EntityType="Self.project_comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="project_members" EntityType="Self.project_members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="report" EntityType="Self.report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="request" EntityType="Self.request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_qualification" EntityType="Self.user_qualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_type" EntityType="Self.user_type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_feedback_ToTable" Association="Self.FK_feedback_ToTable">
+            <End Role="user" EntitySet="user" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_ToTable_1" Association="Self.FK_feedback_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_ToTable_2" Association="Self.FK_feedback_ToTable_2">
+            <End Role="user" EntitySet="user" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_ToTable_3" Association="Self.FK_feedback_ToTable_3">
+            <End Role="project" EntitySet="project" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mangaed_projects_ToTable" Association="Self.FK_mangaed_projects_ToTable">
+            <End Role="project" EntitySet="project" />
+            <End Role="mangaed_projects" EntitySet="mangaed_projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mangaed_projects_ToTable_1" Association="Self.FK_mangaed_projects_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="mangaed_projects" EntitySet="mangaed_projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mangaed_projects_ToTable_2" Association="Self.FK_mangaed_projects_ToTable_2">
+            <End Role="state" EntitySet="state" />
+            <End Role="mangaed_projects" EntitySet="mangaed_projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_comments_ToTable" Association="Self.FK_project_comments_ToTable">
+            <End Role="project" EntitySet="project" />
+            <End Role="project_comments" EntitySet="project_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_comments_ToTable_1" Association="Self.FK_project_comments_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="project_comments" EntitySet="project_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_members_ToTable" Association="Self.FK_project_members_ToTable">
+            <End Role="project" EntitySet="project" />
+            <End Role="project_members" EntitySet="project_members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_members_ToTable_1" Association="Self.FK_project_members_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="project_members" EntitySet="project_members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_ToTable_1" Association="Self.FK_project_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="project" EntitySet="project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_ToTable" Association="Self.FK_report_ToTable">
+            <End Role="user" EntitySet="user" />
+            <End Role="report" EntitySet="report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_ToTable_1" Association="Self.FK_report_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="report" EntitySet="report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable" Association="Self.FK_request_ToTable">
+            <End Role="user" EntitySet="user" />
+            <End Role="request" EntitySet="request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable_1" Association="Self.FK_request_ToTable_1">
+            <End Role="user" EntitySet="user" />
+            <End Role="request" EntitySet="request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable_2" Association="Self.FK_request_ToTable_2">
+            <End Role="state" EntitySet="state" />
+            <End Role="request" EntitySet="request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable_3" Association="Self.FK_request_ToTable_3">
+            <End Role="project" EntitySet="project" />
+            <End Role="request" EntitySet="request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+            <End Role="user" EntitySet="user" />
+            <End Role="user_qualification" EntitySet="user_qualification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_ToTable" Association="Self.FK_user_ToTable">
+            <End Role="user_type" EntitySet="user_type" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Database2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tl_id" Type="Int32" Nullable="false" />
+          <Property Name="pm_id" Type="Int32" Nullable="false" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_feedback_ToTable" FromRole="feedback" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.FK_feedback_ToTable_1" FromRole="feedback" ToRole="user" />
+          <NavigationProperty Name="user2" Relationship="Self.FK_feedback_ToTable_2" FromRole="feedback" ToRole="user" />
+          <NavigationProperty Name="project" Relationship="Self.FK_feedback_ToTable_3" FromRole="feedback" ToRole="project" />
+        </EntityType>
+        <EntityType Name="mangaed_projects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="pm_id" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="deliver_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="project" Relationship="Self.FK_mangaed_projects_ToTable" FromRole="mangaed_projects" ToRole="project" />
+          <NavigationProperty Name="user" Relationship="Self.FK_mangaed_projects_ToTable_1" FromRole="mangaed_projects" ToRole="user" />
+          <NavigationProperty Name="state" Relationship="Self.FK_mangaed_projects_ToTable_2" FromRole="mangaed_projects" ToRole="state" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="posting_state_id" Type="Int32" Nullable="false" />
+          <Property Name="assigend_state_id" Type="Int32" Nullable="false" />
+          <Property Name="creation_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="feedbacks" Relationship="Self.FK_feedback_ToTable_3" FromRole="project" ToRole="feedback" />
+          <NavigationProperty Name="mangaed_projects" Relationship="Self.FK_mangaed_projects_ToTable" FromRole="project" ToRole="mangaed_projects" />
+          <NavigationProperty Name="project_comments" Relationship="Self.FK_project_comments_ToTable" FromRole="project" ToRole="project_comments" />
+          <NavigationProperty Name="project_members" Relationship="Self.FK_project_members_ToTable" FromRole="project" ToRole="project_members" />
+          <NavigationProperty Name="user" Relationship="Self.FK_project_ToTable_1" FromRole="project" ToRole="user" />
+          <NavigationProperty Name="requests" Relationship="Self.FK_request_ToTable_3" FromRole="project" ToRole="request" />
+        </EntityType>
+        <EntityType Name="project_comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="pm_id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="project" Relationship="Self.FK_project_comments_ToTable" FromRole="project_comments" ToRole="project" />
+          <NavigationProperty Name="user" Relationship="Self.FK_project_comments_ToTable_1" FromRole="project_comments" ToRole="user" />
+        </EntityType>
+        <EntityType Name="project_members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <Property Name="member_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="project" Relationship="Self.FK_project_members_ToTable" FromRole="project_members" ToRole="project" />
+          <NavigationProperty Name="user" Relationship="Self.FK_project_members_ToTable_1" FromRole="project_members" ToRole="user" />
+        </EntityType>
+        <EntityType Name="report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pm_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_report_ToTable" FromRole="report" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.FK_report_ToTable_1" FromRole="report" ToRole="user" />
+        </EntityType>
+        <EntityType Name="request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sender_id" Type="Int32" Nullable="false" />
+          <Property Name="reciever_id" Type="Int32" Nullable="false" />
+          <Property Name="state_id" Type="Int32" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="project_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="project" Relationship="Self.FK_request_ToTable_3" FromRole="request" ToRole="project" />
+          <NavigationProperty Name="user" Relationship="Self.FK_request_ToTable" FromRole="request" ToRole="user" />
+          <NavigationProperty Name="user1" Relationship="Self.FK_request_ToTable_1" FromRole="request" ToRole="user" />
+          <NavigationProperty Name="state" Relationship="Self.FK_request_ToTable_2" FromRole="request" ToRole="state" />
+        </EntityType>
+        <EntityType Name="state">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="state1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="mangaed_projects" Relationship="Self.FK_mangaed_projects_ToTable_2" FromRole="state" ToRole="mangaed_projects" />
+          <NavigationProperty Name="requests" Relationship="Self.FK_request_ToTable_2" FromRole="state" ToRole="request" />
+        </EntityType>
+        <EntityType Name="Table">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="qualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="jop_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="feedbacks" Relationship="Self.FK_feedback_ToTable" FromRole="user" ToRole="feedback" />
+          <NavigationProperty Name="feedbacks1" Relationship="Self.FK_feedback_ToTable_1" FromRole="user" ToRole="feedback" />
+          <NavigationProperty Name="feedbacks2" Relationship="Self.FK_feedback_ToTable_2" FromRole="user" ToRole="feedback" />
+          <NavigationProperty Name="mangaed_projects" Relationship="Self.FK_mangaed_projects_ToTable_1" FromRole="user" ToRole="mangaed_projects" />
+          <NavigationProperty Name="projects" Relationship="Self.FK_project_ToTable_1" FromRole="user" ToRole="project" />
+          <NavigationProperty Name="project_comments" Relationship="Self.FK_project_comments_ToTable_1" FromRole="user" ToRole="project_comments" />
+          <NavigationProperty Name="project_members" Relationship="Self.FK_project_members_ToTable_1" FromRole="user" ToRole="project_members" />
+          <NavigationProperty Name="reports" Relationship="Self.FK_report_ToTable" FromRole="user" ToRole="report" />
+          <NavigationProperty Name="reports1" Relationship="Self.FK_report_ToTable_1" FromRole="user" ToRole="report" />
+          <NavigationProperty Name="requests" Relationship="Self.FK_request_ToTable" FromRole="user" ToRole="request" />
+          <NavigationProperty Name="requests1" Relationship="Self.FK_request_ToTable_1" FromRole="user" ToRole="request" />
+          <NavigationProperty Name="user_qualification" Relationship="Self.FK_Table_ToTable" FromRole="user" ToRole="user_qualification" />
+          <NavigationProperty Name="user_type" Relationship="Self.FK_user_ToTable" FromRole="user" ToRole="user_type" />
+        </EntityType>
+        <EntityType Name="user_qualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="qualification" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.FK_Table_ToTable" FromRole="user_qualification" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.FK_user_ToTable" FromRole="user_type" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_feedback_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="tl_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_ToTable_2">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_ToTable_3">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mangaed_projects_ToTable">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="mangaed_projects" Type="Self.mangaed_projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mangaed_projects">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mangaed_projects_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="mangaed_projects" Type="Self.mangaed_projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="mangaed_projects">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mangaed_projects_ToTable_2">
+          <End Role="state" Type="Self.state" Multiplicity="1" />
+          <End Role="mangaed_projects" Type="Self.mangaed_projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="mangaed_projects">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_comments_ToTable">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="project_comments" Type="Self.project_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_comments">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_members_ToTable">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="project_members" Type="Self.project_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="project_members">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="project" Type="Self.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable_3">
+          <End Role="project" Type="Self.project" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_comments_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="project_comments" Type="Self.project_comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_comments">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_project_members_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="project_members" Type="Self.project_members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_members">
+              <PropertyRef Name="member_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="report" Type="Self.report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="pm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_report_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="report" Type="Self.report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable_1">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="reciever_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_request_ToTable_2">
+          <End Role="state" Type="Self.state" Multiplicity="1" />
+          <End Role="request" Type="Self.request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="state">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_ToTable">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="user_qualification" Type="Self.user_qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_qualification">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_ToTable">
+          <End Role="user_type" Type="Self.user_type" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Database2Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="feedbacks" EntityType="Self.feedback" />
+          <EntitySet Name="mangaed_projects" EntityType="Self.mangaed_projects" />
+          <EntitySet Name="projects" EntityType="Self.project" />
+          <EntitySet Name="project_comments" EntityType="Self.project_comments" />
+          <EntitySet Name="project_members" EntityType="Self.project_members" />
+          <EntitySet Name="reports" EntityType="Self.report" />
+          <EntitySet Name="requests" EntityType="Self.request" />
+          <EntitySet Name="states" EntityType="Self.state" />
+          <EntitySet Name="Tables" EntityType="Self.Table" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="user_qualification" EntityType="Self.user_qualification" />
+          <EntitySet Name="user_type" EntityType="Self.user_type" />
+          <AssociationSet Name="FK_feedback_ToTable" Association="Self.FK_feedback_ToTable">
+            <End Role="user" EntitySet="users" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_ToTable_1" Association="Self.FK_feedback_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_ToTable_2" Association="Self.FK_feedback_ToTable_2">
+            <End Role="user" EntitySet="users" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_ToTable_3" Association="Self.FK_feedback_ToTable_3">
+            <End Role="project" EntitySet="projects" />
+            <End Role="feedback" EntitySet="feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mangaed_projects_ToTable" Association="Self.FK_mangaed_projects_ToTable">
+            <End Role="project" EntitySet="projects" />
+            <End Role="mangaed_projects" EntitySet="mangaed_projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mangaed_projects_ToTable_1" Association="Self.FK_mangaed_projects_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="mangaed_projects" EntitySet="mangaed_projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mangaed_projects_ToTable_2" Association="Self.FK_mangaed_projects_ToTable_2">
+            <End Role="state" EntitySet="states" />
+            <End Role="mangaed_projects" EntitySet="mangaed_projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_comments_ToTable" Association="Self.FK_project_comments_ToTable">
+            <End Role="project" EntitySet="projects" />
+            <End Role="project_comments" EntitySet="project_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_members_ToTable" Association="Self.FK_project_members_ToTable">
+            <End Role="project" EntitySet="projects" />
+            <End Role="project_members" EntitySet="project_members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_ToTable_1" Association="Self.FK_project_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="project" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable_3" Association="Self.FK_request_ToTable_3">
+            <End Role="project" EntitySet="projects" />
+            <End Role="request" EntitySet="requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_comments_ToTable_1" Association="Self.FK_project_comments_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="project_comments" EntitySet="project_comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_project_members_ToTable_1" Association="Self.FK_project_members_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="project_members" EntitySet="project_members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_ToTable" Association="Self.FK_report_ToTable">
+            <End Role="user" EntitySet="users" />
+            <End Role="report" EntitySet="reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_report_ToTable_1" Association="Self.FK_report_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="report" EntitySet="reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable" Association="Self.FK_request_ToTable">
+            <End Role="user" EntitySet="users" />
+            <End Role="request" EntitySet="requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable_1" Association="Self.FK_request_ToTable_1">
+            <End Role="user" EntitySet="users" />
+            <End Role="request" EntitySet="requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_request_ToTable_2" Association="Self.FK_request_ToTable_2">
+            <End Role="state" EntitySet="states" />
+            <End Role="request" EntitySet="requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_ToTable" Association="Self.FK_Table_ToTable">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_qualification" EntitySet="user_qualification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_ToTable" Association="Self.FK_user_ToTable">
+            <End Role="user_type" EntitySet="user_type" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Database2ModelStoreContainer" CdmEntityContainer="Database2Entities3">
+          <EntitySetMapping Name="feedbacks">
+            <EntityTypeMapping TypeName="Database2Model.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="tl_id" ColumnName="tl_id" />
+                <ScalarProperty Name="pm_id" ColumnName="pm_id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mangaed_projects">
+            <EntityTypeMapping TypeName="Database2Model.mangaed_projects">
+              <MappingFragment StoreEntitySet="mangaed_projects">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="pm_id" ColumnName="pm_id" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="deliver_date" ColumnName="deliver_date" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="projects">
+            <EntityTypeMapping TypeName="Database2Model.project">
+              <MappingFragment StoreEntitySet="project">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="posting_state_id" ColumnName="posting_state_id" />
+                <ScalarProperty Name="assigend_state_id" ColumnName="assigend_state_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_comments">
+            <EntityTypeMapping TypeName="Database2Model.project_comments">
+              <MappingFragment StoreEntitySet="project_comments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="pm_id" ColumnName="pm_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="project_members">
+            <EntityTypeMapping TypeName="Database2Model.project_members">
+              <MappingFragment StoreEntitySet="project_members">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+                <ScalarProperty Name="member_id" ColumnName="member_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reports">
+            <EntityTypeMapping TypeName="Database2Model.report">
+              <MappingFragment StoreEntitySet="report">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="pm_id" ColumnName="pm_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requests">
+            <EntityTypeMapping TypeName="Database2Model.request">
+              <MappingFragment StoreEntitySet="request">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="sender_id" ColumnName="sender_id" />
+                <ScalarProperty Name="reciever_id" ColumnName="reciever_id" />
+                <ScalarProperty Name="state_id" ColumnName="state_id" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="project_id" ColumnName="project_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="states">
+            <EntityTypeMapping TypeName="Database2Model.state">
+              <MappingFragment StoreEntitySet="state">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="state1" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tables">
+            <EntityTypeMapping TypeName="Database2Model.Table">
+              <MappingFragment StoreEntitySet="Table">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Database2Model.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="jop_description" ColumnName="jop_description" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_qualification">
+            <EntityTypeMapping TypeName="Database2Model.user_qualification">
+              <MappingFragment StoreEntitySet="user_qualification">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_type">
+            <EntityTypeMapping TypeName="Database2Model.user_type">
+              <MappingFragment StoreEntitySet="user_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

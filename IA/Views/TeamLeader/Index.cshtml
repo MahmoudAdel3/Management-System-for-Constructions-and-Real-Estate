@@ -1,0 +1,23 @@
+﻿@model IEnumerable<IA.Models.request>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <img src="~/image/cont.jpg" alt="..." class="img-responsive" />
+            <div class="caption">
+                <p>@Html.DisplayFor(modelItem => item.user.fname) @Html.DisplayFor(modelItem => item.user.lname)</p>
+                <p>@Html.DisplayFor(modelItem => item.content)</p>
+                <p>@Html.ActionLink("Accept", "Acceptrequest", new { id = item.Id }, new { @class = "btn btn-primary" }) @Html.ActionLink("Refuse", "refuserequest", new { id = item.Id }, new { @class = "btn btn-default" })</p>
+            </div>
+        </div>
+    </div>
+
+}

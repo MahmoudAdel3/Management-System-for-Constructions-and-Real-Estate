@@ -1,0 +1,76 @@
+﻿@model IEnumerable<IA.Models.project_members>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_Admin.cshtml";
+}
+@{
+
+    IA.Models.Database2Entities3 db = new IA.Models.Database2Entities3();
+
+}
+
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+            Project Title
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.lname)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.user.type_id);
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.project.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.user.lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => db.user_type.Find(item.user.type_id).name)
+            </td>
+            <td>
+                @if (item.user.type_id == 3)
+                {
+                    <span style="padding-right:10px">
+                        @Html.ActionLink("Give Feedback", "GiveFeedback", new { id = item.Id },
+new { @class = " btn btn-success confirm" })
+                </span>
+                }
+                @{
+                    List<IA.Models.request> removed = new List<IA.Models.request>();
+                    var query = db.requests.Where(s => s.content.Equals(item.Id));
+                    if (removed.Count() > 0)
+                    {
+                        removed = query.ToList();
+
+                    }
+                }
+                @if (removed.Count() == 0 && item.user.type_id == 3)
+                {
+                    @Html.ActionLink("Remove", "DeleteJunior", new { id = item.Id })
+
+                }
+                else if (item.user.type_id != 3)
+                {
+
+                }
+                else
+                {
+                    <p>Project manager must accept this request to delete junior</p>
+
+                }
+            </td>
+        </tr>
+                    }
+    @Html.ActionLink("Send Request", "AddJuniors", null,
+new { @class = " btn btn-primary confirm" })
+    
+</table>
+

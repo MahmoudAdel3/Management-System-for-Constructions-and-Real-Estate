@@ -1,0 +1,93 @@
+﻿
+@model IA.Models.project
+           
+@using (Html.BeginForm("CreateProject", "Customer"))
+
+{
+    
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Add Project</h2>
+    
+    @{
+        if (Convert.ToInt32(HttpContext.Current.Session["usertype"]) == 4)
+        {
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+           <label class = "col-md-2">Title</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.title, new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Description</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Duration</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.duration, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.duration)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="text-center col-md-12">
+                <input type="submit" value="Create" class="btn btn-default submit " />
+            </div>
+        </div>
+        }
+        else
+        {
+                @Html.ValidationSummary(true)
+
+        <div class="form-group">
+           <label class="col-md-2">Title</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.title, new {disabled="disabled" , @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Description</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.description, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Duration</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.duration, new { disabled = "disabled", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.duration)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="text-center col-md-12">
+                <input type="submit" value="Create" class="btn btn-default submit" disabled="disabled" />
+            </div>
+        </div>
+            
+        }
+    }
+    </div>
+    
+
+}

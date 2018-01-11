@@ -1,0 +1,64 @@
+﻿@model IEnumerable<IA.Models.project>
+
+@{
+    ViewBag.Title = "getCutomerProjects";
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+<h2>Projects</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            <div>
+                Title
+            </div>
+        </th>
+        <th>
+            <div>
+                Description
+            </div>
+        </th>
+        <th>
+            <div>
+                Duration
+            </div>
+        </th>
+        
+        
+        <th>
+            <div>
+                Creation Date
+            </div>
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creation_date)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Add Proposal", "Manage", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) 
+          
+            
+        </td>
+    </tr>
+}
+
+</table>

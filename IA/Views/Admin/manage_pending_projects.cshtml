@@ -1,0 +1,51 @@
+﻿@model IEnumerable<IA.Models.project>
+
+@{
+    
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+
+
+<table class="table main-table table-bordered text-center">
+    <tr>
+        <th>
+            <div>
+                Title
+            </div>
+        </th>
+
+        <th>
+            <div>
+                Creation Date
+            </div>
+        </th>
+        <th>
+            <div>
+                Customer Name
+            </div>
+        </th>
+        <th>Control</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.creation_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.fname) @Html.DisplayFor(modelItem => item.user.lname)
+        </td>
+        <td>
+            <a>@Html.ActionLink("Approve", "projectapprove", new { id = item.Id }, new { @class = " btn btn-success " })</a>
+            <a>@Html.ActionLink("refuse", "projectdelete", new { id = item.Id }, new { @class = " btn btn-danger confirm" })</a> 
+            
+        </td>
+    </tr>
+}
+
+</table>

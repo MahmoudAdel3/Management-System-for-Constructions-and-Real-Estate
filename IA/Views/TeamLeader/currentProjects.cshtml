@@ -1,0 +1,27 @@
+﻿@model IEnumerable<IA.Models.project>
+
+@{
+    ViewBag.Title = "currentProjects";
+    Layout = "~/Views/_Admin.cshtml";
+}
+@if (Model.Count() == 0)
+{
+    <h2>There Is No Projects To Be Managed</h2>
+}
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="col-md-5">
+        <div class="thumbnail">
+            <img src="~/image/1.jpg" alt="..." class="img-responsive" />
+            <div class="caption">
+                <p>  @Html.DisplayFor(modelItem => item.title)</p>
+                <p>  @Html.DisplayFor(modelItem => item.description)</p>
+                <p>@Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })</p>
+            </div>
+        </div>
+    </div>
+}

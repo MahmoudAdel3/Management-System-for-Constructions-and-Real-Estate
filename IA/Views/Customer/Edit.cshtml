@@ -1,0 +1,66 @@
+﻿@model IA.Models.project
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/_Customer.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>project</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <label class="col-md-2">Title</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.title, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.title)
+            </div>
+        </div>
+
+        <div class="form-group">
+           <label class="col-md-2">Description</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2">Duration</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.duration, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.duration)
+            </div>
+        </div>
+
+    
+
+       
+
+
+
+        <div class="form-group">
+            <div class="text-center col-md-12">
+                <input type="submit" value="Save" class="btn btn-default submit" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "GetProjects", null,
+new { @class = "btn btn-primary" })
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

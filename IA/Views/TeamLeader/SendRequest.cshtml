@@ -1,0 +1,40 @@
+﻿@model IA.Models.request
+
+@{
+    ViewBag.Title = "SendRequest";
+    Layout = "~/Views/_Admin.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2>Send request</h2>
+        @Html.ValidationSummary(true)
+
+
+        <div class="form-group">
+            <label class="col-md-12 ">Request Message</label>
+            <br />
+            <div class="col-md-8">
+                @Html.TextAreaFor(model => model.content, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.content)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="send" class="btn btn-primary submit" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
